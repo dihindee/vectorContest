@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">News Vocalizer</string>
+    <string name="startVoice">Spell news</string>
+    <string name="stopVoice">stop spelling</string>
+
+</resources>
