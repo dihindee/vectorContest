@@ -1,5 +1,6 @@
 package com.example.user00.nevsvocalizer;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -32,8 +33,10 @@ public class BrowserActivity extends AppCompatActivity {
         wv.setWebViewClient(new WebViewClient());
         wv.getSettings().setJavaScriptEnabled(true);
         Log.d("MYAPP","webview connecting to: "+ url);
+        final MediaPlayer mp = MediaPlayer.create(this,R.raw.recording);
         Button button = findViewById(R.id.buttonVoice);
         button.setOnClickListener(v -> {
+            mp.start();
             MyRecognizer.getInstance().startRecognize(findViewById(R.id.recognizedText));
         });
         button = findViewById(R.id.buttonPronoun);

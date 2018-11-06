@@ -1,11 +1,15 @@
 package com.example.user00.nevsvocalizer.Yandex_io;
 
 import android.support.annotation.NonNull;
+import android.util.ArraySet;
 import android.util.Log;
 import android.widget.TextView;
 
 import com.example.user00.nevsvocalizer.MainActivity;
 import com.example.user00.nevsvocalizer.VoiceControl;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import ru.yandex.speechkit.Error;
 import ru.yandex.speechkit.Language;

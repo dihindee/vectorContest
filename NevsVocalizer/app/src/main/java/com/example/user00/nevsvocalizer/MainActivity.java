@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -60,10 +61,10 @@ public class MainActivity extends AppCompatActivity {
             ed.apply();
             Log.d("MYAPP","generated uuid: "+uuid);
         }
-        else{Log.d("MYAPP","loaded uuid: "+uuid.replace("-",""));}
+        else{Log.d("MYAPP","loaded uuid: "+uuid.replaceAll("-",""));}
         try {
             SpeechKit.getInstance().init(getApplicationContext(), "fef053c0-013b-49c8-831c-4899c2bfb07a");
-            SpeechKit.getInstance().setUuid(uuid.replace("-",""));
+            SpeechKit.getInstance().setUuid(uuid.replaceAll("-",""));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
         VoiceControl.getInstance().setMainActivity(this);
         vocalizer = MyVocalizer.getInstance();
         recognizer = MyRecognizer.getInstance();
+
         // spotter = MyPhraseSpotter.createSpotter();
        // spotter.start();
         newsList = findViewById(R.id.newsList);
@@ -84,7 +86,9 @@ public class MainActivity extends AppCompatActivity {
             else vocalizer.synthesizeList(newsHeaders);
         });
         button = findViewById(R.id.voicebutton);
+        final MediaPlayer mp = MediaPlayer.create(this,R.raw.recording);
         button.setOnClickListener(v -> {
+            mp.start();
             recognizer.startRecognize(findViewById(R.id.recognizedText));
         });
         newsList.setOnItemClickListener((parent,view,position,id)-> openBrowser(postURLs.get(position)));
